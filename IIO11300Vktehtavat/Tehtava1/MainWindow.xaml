@@ -1,21 +1,28 @@
-﻿<Window x:Class="Tehtava1.MainWindow"
+﻿<Window x:Class="IIO13200_15S.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Tehtava1"
+        xmlns:local="clr-namespace:IIO13200_15S"
         mc:Ignorable="d"
-        Title="Oy K-S Windows Ab" Height="350" Width="525" FontSize="18">
+        Title="Tehtävä 1: K-S Ikkunat Oy" Height="424.468" Width="611.569" FontSize="18">
     <Grid>
-    <StackPanel Orientation="Horizontal">
-      <StackPanel Orientation="Vertical">
-        <TextBlock x:Name="tbWidht" Text="Ikkunan leveys" Height="28" Margin="10,10,10,0" />
-        <TextBox x:Name="txtWidht" Text="600" Height="28" Width="114" Margin="10,10,10,0" />
-      </StackPanel>
-      <StackPanel Orientation="Vertical">
-        <Button x:Name="btnCalculate" Content="Laske pinta-ala ja piiri" Height="32" Width="180" Click="btnCalculate_Click" Margin="10,10,10,0"/>
-        <Button x:Name="btnClose" Content="Sulje" Height="32" Width="180" Click="btnClose_Click" Margin="10,10,10,0"/>
-      </StackPanel>
-    </StackPanel>
-  </Grid>
+        <TextBox x:Name="txtWindowWidth" HorizontalAlignment="Left" Height="34" Margin="466,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="textBox_TextChanged"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="313,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Right"><Run Text="Ikkunan "/><Run Text="l"/><Run Text="eveys (L):"/></TextBlock>
+        <TextBox x:Name="txtWindowHeight" HorizontalAlignment="Left" Height="34" Margin="466,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="textBox_TextChanged"/>
+        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="285,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="176" TextAlignment="Right"><Run Text="Ikkunan "/><Run Text="k"/><Run Text="orkeus"/><Run Text=" ("/><Run Text="H"/><Run Text="):"/></TextBlock>
+        <TextBox x:Name="txtFrameWidth" HorizontalAlignment="Left" Height="34" Margin="466,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="textBox_TextChanged" Text="45"/>
+        <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Margin="268,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193" TextAlignment="Right" Text="Karmipuun leveys (W):"/>
+        <Button x:Name="buttonCalculate" Content="Laske" HorizontalAlignment="Left" Margin="466,182,0,0" VerticalAlignment="Top" Width="75" Click="buttonCalculate_Click"/>
+        <Rectangle x:Name="rectWindow" Fill="#FFC4C4FF" HorizontalAlignment="Left" Height="180" Margin="10,10,0,0" VerticalAlignment="Top" Width="250" Stroke="#FF760A0A" StrokeThickness="5"/>
+        <Line x:Name="lineL" X1="15" Y1="150" X2="255" Y2="150" Stroke="black" StrokeDashArray="4,2"/>
+        <Line x:Name="lineH" X1="150" Y1="15" X2="150" Y2="185" Stroke="black" StrokeDashArray="4,2"/>
+        <Line x:Name="lineW" X1="255" Y1="50" X2="260" Y2="50" Stroke="black" StrokeDashArray="2,1"/>
+        <Label x:Name="labelArea" Content="0" HorizontalAlignment="Left" Margin="466,239,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBlock x:Name="textBlock4" HorizontalAlignment="Left" Margin="293,244,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Right" Width="161"><Run Text="Ikkunan pinta-ala"/><Run Text=":"/><LineBreak/><Run/></TextBlock>
+        <TextBlock x:Name="textBlock5" HorizontalAlignment="Left" Margin="285,298,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="176" TextAlignment="Right" Text="Karmin piiri:"/>
+        <TextBlock x:Name="textBlock6" HorizontalAlignment="Left" Margin="268,352,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193" TextAlignment="Right" Text="Karmin pinta-ala:"/>
+        <Label x:Name="labelFramePerim" Content="0" HorizontalAlignment="Left" Margin="466,293,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="labelFrameArea" Content="0" HorizontalAlignment="Left" Margin="466,347,0,0" VerticalAlignment="Top" Width="75"/>
+    </Grid>
 </Window>

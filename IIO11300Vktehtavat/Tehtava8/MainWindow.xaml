@@ -1,0 +1,22 @@
+﻿<Window x:Class="Tehtava5.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tehtava5"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="399" Width="543">
+    <Grid>
+        <Button x:Name="btnLoadToDataTable" Content="Hae läsnäolot" HorizontalAlignment="Left" VerticalAlignment="Top" Width="535" Height="30" Click="button_Click"/>
+        <Button x:Name="btnLoadToDataView" Content="Hae läsnäoloni" HorizontalAlignment="Left" VerticalAlignment="Top" Width="535" Height="30" Click="button_Click" Margin="0,60,0,0"/>
+        <TextBox x:Name="txtSearch" HorizontalAlignment="Left" Height="30
+                 " Margin="0,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="535"/>
+        <DataGrid x:Name="dgAttendances" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="0,90,0,0" VerticalAlignment="Top" Height="245" Width="535" SelectionChanged="dataGrid_SelectionChanged"/>
+        <StatusBar x:Name="sbStatus" HorizontalAlignment="Left" Height="34" Margin="0,335,0,0" VerticalAlignment="Top" Width="535">
+            <StatusBarItem>
+                <TextBlock Name="txtStatus" Width="269" VerticalAlignment="Top" />
+            </StatusBarItem>
+        </StatusBar>
+
+    </Grid>
+</Window>

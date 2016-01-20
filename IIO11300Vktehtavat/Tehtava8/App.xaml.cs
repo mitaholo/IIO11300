@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace IIO13200_15S
+namespace Tehtava5
 {
     /// <summary>
     /// Interaction logic for App.xaml

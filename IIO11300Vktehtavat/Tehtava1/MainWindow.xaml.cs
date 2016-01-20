@@ -1,9 +1,4 @@
-﻿/*
-* Copyright (C) JAMK/IT/Esa Salmikangas
-* This file is part of the IIO11300 course project.
-* Created: 12.1.2015
-* Authors: Esa Salmikangas
-*/using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,50 +13,42 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Tehtava1
+namespace IIO13200_15S
 {
-  /// <summary>
-  /// Interaction logic for MainWindow.xaml
-  /// </summary>
-  public partial class MainWindow : Window
-  {
-    public MainWindow()
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
     {
-      InitializeComponent();
-    }
-
-        private void btnCalculate_Click(object sender, RoutedEventArgs e)
+        public MainWindow()
         {
-            //TODO
-            try
-            {
-                double result;
-                result = BusinessLogicWindow.CalculatePerimeter(1, 1);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                //yield to an user that everything okay
-            }
+            InitializeComponent();
         }
 
-    private void btnClose_Click(object sender, RoutedEventArgs e)
-    {
-
-    }
-  }
-
-  public class BusinessLogicWindow
-    {
-    /// <summary>
-    /// CalculatePerimeter calculates the perimeter of a window
-    /// </summary>
-    public static double CalculatePerimeter(double widht, double height)
+        private void textBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            throw new System.NotImplementedException();
+
+        }
+
+        private void buttonCalculate_Click(object sender, RoutedEventArgs e)
+        {
+            int width, height, frameWidth;
+
+            if (int.TryParse(txtWindowWidth.Text, out width) && int.TryParse(txtWindowHeight.Text, out height))
+            {
+                labelArea.Content = width * height;
+
+                if (int.TryParse(txtFrameWidth.Text, out frameWidth))
+                {
+                    labelFramePerim.Content = 2 * ((height + 2 * frameWidth) + (width + 2 * frameWidth));
+                    labelFrameArea.Content = ((height + 2 * frameWidth) * (width + 2 * frameWidth)) - (width * height);
+                }
+                else
+                {
+                    labelFramePerim.Content = labelFrameArea.Content = "Virhe!";
+                }
+            }
+            else labelArea.Content = labelFramePerim.Content = labelFrameArea.Content = "Virhe!";
         }
     }
 }

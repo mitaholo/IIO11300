@@ -1,0 +1,18 @@
+﻿<Window x:Name="windowList" x:Class="Tehtava4.ListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tehtava4"
+        mc:Ignorable="d"
+        Title="Teelista" Height="309" Width="508">
+    <Grid>
+        <DataGrid x:Name="dgTeas" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="214" Margin="10,46,0,0" VerticalAlignment="Top" Width="472" SelectionChanged="dataGrid_SelectionChanged" CanUserReorderColumns="False" CanUserResizeColumns="False" MinColumnWidth="140" IsReadOnly="True"/>
+        <ComboBox x:Name="cbCountrySelection" HorizontalAlignment="Left" Margin="51,10,0,0" VerticalAlignment="Top" Width="109" />
+        <Button x:Name="btnLoad" Content="Karsi" HorizontalAlignment="Left" Margin="346,10,0,0" VerticalAlignment="Top" Width="59" Click="button_Click"/>
+        <ComboBox x:Name="cbScoreSelection" HorizontalAlignment="Left" Margin="270,10,0,0" VerticalAlignment="Top" Width="57" />
+        <Label x:Name="lblScore" Content="Minimiarvosana:" HorizontalAlignment="Left" Margin="169,6,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblScore_Copy" Content="Maa:" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnAll" Content="Kaikki" HorizontalAlignment="Left" Margin="423,10,0,0" VerticalAlignment="Top" Width="59" Click="button_Click"/>
+    </Grid>
+</Window>

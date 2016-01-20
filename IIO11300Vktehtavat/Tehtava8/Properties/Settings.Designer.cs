@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace IIO13200_15S.Properties
+namespace Tehtava5.Properties
 {
 
 
