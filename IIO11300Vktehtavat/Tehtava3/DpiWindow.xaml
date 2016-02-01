@@ -1,0 +1,34 @@
+﻿<Window x:Class="Tehtava3.DpiWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tehtava3"
+        mc:Ignorable="d"
+        Title="" Height="205" Width="280"
+        ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <local:NegativeToEmptyConverter x:Key="negToEmpty"/>
+    </Window.Resources>
+    <StackPanel x:Name="spDpiForm" DataContext="{Binding}" VerticalAlignment="Stretch" Background="#f9f9f9">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,25,0,25">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,10">
+                <Label Content="DPI X:" Height="25" Padding="0,3,5,0"/>
+                <TextBox x:Name="tbDpiX" Text="{Binding DpiX, Mode=OneTime, Converter={StaticResource ResourceKey=negToEmpty}}" Focusable="True" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="60" PreviewTextInput="OnPreviewTextInput" CommandManager.PreviewExecuted="OnPreviewExecuted"/>
+                <Label Content="DPI Y:" Height="25" Margin="15,0,0,0" Padding="0,3,5,0"/>
+                <TextBox x:Name="tbDpiY" Text="{Binding DpiY, Mode=OneTime, Converter={StaticResource ResourceKey=negToEmpty}}" Focusable="True" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="60" PreviewTextInput="OnPreviewTextInput" CommandManager.PreviewExecuted="OnPreviewExecuted"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,10,0,0">
+                <Label Content="Yksikkö:" Height="25" Padding="0,3,5,0"/>
+                <ComboBox x:Name="cbUnit" Text="{Binding UnitString, Mode=OneTime}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="160">
+                    <ComboBoxItem IsSelected="True">1 (määrätty)</ComboBoxItem>
+                    <ComboBoxItem>0 (määrittelemätön)</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+            <Button x:Name="btnCancel" Width="130" Height="25" Content="Peruuta" Margin="0,0,10,0" Click="CancelClick"/>
+            <Button x:Name="btnSave" Width="70" Height="25" Content="Tallenna" Margin="10,0,0,0" Click="SaveClick"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

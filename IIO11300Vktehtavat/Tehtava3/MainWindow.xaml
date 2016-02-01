@@ -1,0 +1,62 @@
+﻿<Window x:Class="Tehtava3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tehtava3"
+        mc:Ignorable="d"
+        Title="PNG DPI Editor" Height="350" Width="525">
+    <DockPanel LastChildFill="True">
+        <Menu x:Name="menu" IsMainMenu="True" HorizontalAlignment="Stretch" DockPanel.Dock="Top">
+            <Menu.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFFFFF" Offset="0" />
+                    <GradientStop Color="#DFDFDF" Offset="1" />
+                </LinearGradientBrush>
+            </Menu.Background>
+            <MenuItem Header="Tiedosto">
+                <MenuItem x:Name="miOpen" Header="Avaa kansio" Click="OpenFolderClicked"/>
+                    <MenuItem x:Name="miClose" Header="Lopeta" Click="CloseClicked"/>
+
+            </MenuItem>
+        </Menu>
+
+
+        <DataGrid x:Name="dgImages" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                          HeadersVisibility="Column" ColumnWidth="*"
+                          AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" IsReadOnly="True"
+                          BorderBrush="#9F9F9F" BorderThickness="1"
+                          Background="#FAFAFA" MouseDoubleClick="ImageDoubleClicked">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="dgcName" Header="Nimi" Binding="{Binding Name}">
+                    <DataGridColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalAlignment" Value="Stretch" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap" />
+                            <Setter Property="Padding" Value="2 2 2 2" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn x:Name="dgcDpi" Header="DPI" Binding="{Binding DpiString}">
+                    <DataGridColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalAlignment" Value="Stretch" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap" />
+                            <Setter Property="Padding" Value="2 2 2 2" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>
