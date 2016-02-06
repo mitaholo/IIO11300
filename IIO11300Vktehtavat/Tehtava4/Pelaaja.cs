@@ -12,6 +12,7 @@ namespace Tehtava3
         public string sukunimi { get; private set; }
         public string seura { get; private set; }
         public float hinta { get; private set; }
+        public string kuvaUrl { get; private set; }
 
         public string KokoNimi
         {
@@ -22,17 +23,18 @@ namespace Tehtava3
         }
 
 
-        public Pelaaja(string etunimi, string sukunimi, string seura, float hinta)
+        public Pelaaja(string etunimi, string sukunimi, string seura, float hinta, string kuvaUrl)
         {
-            paivita(etunimi, sukunimi, seura, hinta);
+            paivita(etunimi, sukunimi, seura, hinta, kuvaUrl);
         }
 
-        public void paivita(string etunimi, string sukunimi, string seura, float hinta)
+        public void paivita(string etunimi, string sukunimi, string seura, float hinta, string kuvaUrl)
         {
             this.etunimi = etunimi;
             this.sukunimi = sukunimi;
             this.seura = seura;
             this.hinta = hinta;
+            this.kuvaUrl = kuvaUrl;
         }
 
         public bool onkoKaima(string etunimi, string sukunimi)
@@ -42,7 +44,7 @@ namespace Tehtava3
 
         public string tallenna()
         {
-            return etunimi + ";" + sukunimi + ";" + seura + ";" + hinta;
+            return etunimi + ";" + sukunimi + ";" + seura + ";" + hinta + ";" + kuvaUrl;
         }
 
         override public string ToString()

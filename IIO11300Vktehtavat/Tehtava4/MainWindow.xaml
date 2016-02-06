@@ -6,29 +6,55 @@
         xmlns:local="clr-namespace:Tehtava3"
         mc:Ignorable="d"
         Title="Oudot oliot SM-liigassa" Height="283.042" Width="635.958">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="431*"/>
-            <ColumnDefinition Width="197*"/>
-        </Grid.ColumnDefinitions>
-        <TextBox x:Name="txtEtu" HorizontalAlignment="Left" Height="23" Margin="95,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="lblEtu" Content="Etunimi" HorizontalAlignment="Left" Margin="20,18,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtSuku" HorizontalAlignment="Left" Height="23" Margin="95,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="lblSuku" Content="Sukunimi" HorizontalAlignment="Left" Margin="20,58,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtHinta" HorizontalAlignment="Left" Height="23" Margin="95,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="lblHinta" Content="Siirtohinta" HorizontalAlignment="Left" Margin="20,98,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblSeura" Content="Seura" HorizontalAlignment="Left" Margin="20,138,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cbSeura" HorizontalAlignment="Left" Margin="95,138,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnUusi" Content="Luo uusi pelaaja" HorizontalAlignment="Left" Margin="235,20,0,0" VerticalAlignment="Top" Width="116" Click="btnUusi_Click"/>
-        <Button x:Name="btnTallenna" Content="Tallenna pelaaja" HorizontalAlignment="Left" Margin="235,60,0,0" VerticalAlignment="Top" Width="116" Click="btnTallenna_Click"/>
-        <Button x:Name="btnPoista" Content="Poista pelaaja" HorizontalAlignment="Left" Margin="235,100,0,0" VerticalAlignment="Top" Width="116" Click="btnPoista_Click"/>
-        <Button x:Name="btnKirjoita" Content="Kirjoita pelaajat" HorizontalAlignment="Left" Margin="235,140,0,0" VerticalAlignment="Top" Width="116" Click="btnKirjoita_Click"/>
-        <Button x:Name="btnLopetus" Content="Lopetus" HorizontalAlignment="Left" Margin="235,180,0,0" VerticalAlignment="Top" Width="116" Click="btnLopetus_Click"/>
-        <ListBox x:Name="listPelaajat" HorizontalAlignment="Left" Height="181" Margin="371,21,0,0" VerticalAlignment="Top" Width="239" SelectionChanged="listPelaajat_SelectionChanged" Grid.ColumnSpan="2"/>
-        <StatusBar x:Name="sbStatus" HorizontalAlignment="Left" Height="31" Margin="0,220,0,0" VerticalAlignment="Top" Width="628" Grid.ColumnSpan="2">
+    <DockPanel LastChildFill="True">
+
+        <Menu x:Name="menu" IsMainMenu="True" HorizontalAlignment="Stretch" DockPanel.Dock="Top">
+            <MenuItem Header="Tiedosto">
+                <MenuItem Header="Lataa tiedostosta" Click="btnLataa_Click"/>
+                <MenuItem Header="Tallenna tiedostoon" Click="btnKirjoita_Click"/>
+                <MenuItem Header="Lopeta" Click="btnLopetus_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <StatusBar x:Name="sbStatus" HorizontalAlignment="Stretch" Height="25" VerticalAlignment="Top" Grid.ColumnSpan="2" DockPanel.Dock="Bottom">
             <StatusBarItem>
                 <TextBlock Name="txtStatus" />
             </StatusBarItem>
         </StatusBar>
-    </Grid>
+
+        <ListBox x:Name="listPelaajat" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="239" SelectionChanged="listPelaajat_SelectionChanged" Grid.ColumnSpan="2" DockPanel.Dock="Right"/>
+
+        <DockPanel DockPanel.Dock="Left">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
+                <Button x:Name="btnUusi" Content="Luo uusi pelaaja" HorizontalAlignment="Left" VerticalAlignment="Top" Width="116" Margin="5,5,5,5" Click="btnUusi_Click"/>
+                <Button x:Name="btnTallenna" Content="Tallenna pelaaja" HorizontalAlignment="Left" VerticalAlignment="Top" Width="116" Margin="5,5,5,5" Click="btnTallenna_Click"/>
+                <Button x:Name="btnPoista" Content="Poista pelaaja" HorizontalAlignment="Left" VerticalAlignment="Top" Width="116" Margin="5,5,5,5" Click="btnPoista_Click"/>
+            </StackPanel>
+            <StackPanel Margin="5,5,0,5" DockPanel.Dock="Left">
+                <StackPanel Orientation="Horizontal" Margin="5,5,0,5">
+                    <Label x:Name="lblEtu" Content="Etunimi:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Padding="0,2,0,0"/>
+                    <TextBox x:Name="txtEtu" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5,5,0,5">
+                    <Label x:Name="lblSuku" Content="Sukunimi:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Padding="0,2,0,0"/>
+                    <TextBox x:Name="txtSuku" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5,5,0,5">
+                    <Label x:Name="lblHinta" Content="Siirtohinta:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Padding="0,2,0,0"/>
+                    <TextBox x:Name="txtHinta" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5,5,0,5">
+                    <Label x:Name="lblSeura" Content="Seura:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Padding="0,2,0,0"/>
+                    <ComboBox x:Name="cbSeura" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5,5,0,5">
+                    <Label x:Name="lblUrl" Content="Kuva URL:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Padding="0,2,0,0"/>
+                    <TextBox x:Name="txtUrl" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Image x:Name="imgPelaaja" Source="{Binding}" Height="160" Width="160" Stretch="Uniform"/>
+            </StackPanel>
+        </DockPanel>
+    </DockPanel>
 </Window>

@@ -1,20 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.IO;
 using Microsoft.Win32;
-using System.Configuration;
 
 namespace Tehtava3
 {
@@ -24,13 +16,11 @@ namespace Tehtava3
         private string[] joukkueet = new string[] {"Ahmat","Avain","DuiPa","EVO","EVVK","GTFO","Hertat","Jazz","JiiKoo","Jock","Kirves","Leijona","Penguins","TsuiPa","WTF"
         };
 
-
         public MainWindow()
         {
             InitializeComponent();
             paivitaListBox();
             for (int i = 0; i < joukkueet.Count(); i++) cbSeura.Items.Add(joukkueet[i]);
-            lataa();
         }
 
         private void btnUusi_Click(object sender, RoutedEventArgs e)
@@ -51,7 +41,7 @@ namespace Tehtava3
 
                 if (!varattuNimi)
                 {
-                    Pelaaja uusiPelaaja = new Pelaaja(etunimi, sukunimi, cbSeura.Text, hinta);
+                    Pelaaja uusiPelaaja = new Pelaaja(etunimi, sukunimi, cbSeura.Text, hinta, txtUrl.Text);
                     pelaajat.Add(uusiPelaaja);
                     paivitaListBox();
                     tyhjennaLomake();
@@ -69,6 +59,16 @@ namespace Tehtava3
                 txtSuku.Text = pelaaja.sukunimi;
                 txtHinta.Text = pelaaja.hinta.ToString();
                 cbSeura.Text = pelaaja.seura;
+                txtUrl.Text = pelaaja.kuvaUrl;
+
+                if (pelaaja.kuvaUrl != null && pelaaja.kuvaUrl != "")
+                {
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri(pelaaja.kuvaUrl, UriKind.Absolute);
+                    bitmap.EndInit();
+                    imgPelaaja.Source = bitmap;
+                }
             };
         }
 
@@ -83,7 +83,7 @@ namespace Tehtava3
                 if (etunimi != "" && sukunimi != "" && txtHinta.Text != "" && float.TryParse(txtHinta.Text, out hinta) && cbSeura.SelectedIndex >= 0)
                 {
                     Pelaaja pelaaja = (Pelaaja)listPelaajat.SelectedItem;
-                    pelaaja.paivita(etunimi, sukunimi, cbSeura.Text, hinta);
+                    pelaaja.paivita(etunimi, sukunimi, cbSeura.Text, hinta, txtUrl.Text);
                     paivitaListBox();
                     tyhjennaLomake();
                     status("Tallennettu pelaaja " + etunimi + " " + sukunimi);
@@ -105,6 +105,17 @@ namespace Tehtava3
             else status("Valitse poistettava pelaaja", 225, 0, 0);
         }
 
+        private void btnLataa_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "CSV file (*.csv)|*.csv";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                lataa(openFileDialog.FileName);
+            }
+            else status("Tallennus epäonnistui", 225, 0, 0);
+        }
+
         private void btnKirjoita_Click(object sender, RoutedEventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -118,13 +129,12 @@ namespace Tehtava3
 
         private void btnLopetus_Click(object sender, RoutedEventArgs e)
         {
-            tallenna();
             Environment.Exit(1);
         }
 
         private void tyhjennaLomake()
         {
-            txtEtu.Text = txtSuku.Text = txtHinta.Text = "";
+            txtEtu.Text = txtSuku.Text = txtHinta.Text = txtUrl.Text = "";
             cbSeura.SelectedIndex = -1;
         }
 
@@ -147,21 +157,29 @@ namespace Tehtava3
             txtStatus.Foreground = new SolidColorBrush(Color.FromRgb(r, g, b));
         }
 
-        private void lataa()
+        private void lataa(string polku)
         {
-            if (File.Exists(ConfigurationManager.AppSettings["savepath"]))
+
+            if (File.Exists(polku))
             {
                 try
                 {
-                    StreamReader tiedosto = new StreamReader(File.OpenRead(ConfigurationManager.AppSettings["savepath"]));
+                    StreamReader tiedosto = new StreamReader(File.OpenRead(polku));
                     while (!tiedosto.EndOfStream)
                     {
                         string rivi = tiedosto.ReadLine();
                         string[] arvot = rivi.Split(';');
                         float hinta;
-                        if (arvot.Count() == 4 && float.TryParse(arvot[3], out hinta))
+                        if (float.TryParse(arvot[3], out hinta))
                         {
-                            pelaajat.Add(new Pelaaja(arvot[0], arvot[1], arvot[2], hinta));
+                            if (arvot.Count() == 4)
+                            {
+                                pelaajat.Add(new Pelaaja(arvot[0], arvot[1], arvot[2], hinta, ""));
+                            }
+                            else if (arvot.Count() == 5)
+                            {
+                                pelaajat.Add(new Pelaaja(arvot[0], arvot[1], arvot[2], hinta, arvot[4]));
+                            }
                         }
                     }
                     status("Tiedot ladattu");
@@ -200,11 +218,6 @@ namespace Tehtava3
                 status("Tallennus epäonnistui", 225, 0, 0);
                 return false;
             }
-        }
-
-        private bool tallenna()
-        {
-            return tallenna(ConfigurationManager.AppSettings["savepath"]);
         }
     }
 }
