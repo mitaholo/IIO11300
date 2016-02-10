@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace Tehtava3
 {
-    class Pelaaja
+    [Serializable]
+    public class Pelaaja
     {
-        public string etunimi { get; private set; }
-        public string sukunimi { get; private set; }
-        public string seura { get; private set; }
-        public float hinta { get; private set; }
-        public string kuvaUrl { get; private set; }
+        public string etunimi { get; set; }
+        public string sukunimi { get; set; }
+        public string seura { get; set; }
+        public float hinta { get; set; }
+        public string kuvaUrl { get; set; }
 
         public string KokoNimi
         {
-            get
-            {
-                return etunimi + " " + sukunimi + ", " + seura;
-            }
+            get { return etunimi + " " + sukunimi + ", " + seura; }
         }
 
+
+        public Pelaaja() { }
 
         public Pelaaja(string etunimi, string sukunimi, string seura, float hinta, string kuvaUrl)
         {

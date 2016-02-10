@@ -10,8 +10,8 @@
 
         <Menu x:Name="menu" IsMainMenu="True" HorizontalAlignment="Stretch" DockPanel.Dock="Top">
             <MenuItem Header="Tiedosto">
-                <MenuItem Header="Lataa tiedostosta" Click="btnLataa_Click"/>
-                <MenuItem Header="Tallenna tiedostoon" Click="btnKirjoita_Click"/>
+                <MenuItem Header="Avaa" Click="btnLataa_Click"/>
+                <MenuItem Header="Tallenna" Click="btnKirjoita_Click"/>
                 <MenuItem Header="Lopeta" Click="btnLopetus_Click"/>
             </MenuItem>
         </Menu>
