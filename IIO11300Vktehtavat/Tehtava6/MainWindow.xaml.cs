@@ -35,7 +35,7 @@ namespace Tehtava6
             int upper, lower, digit, symbol, total, categories;
             upper = lower = digit = symbol = total = categories = 0;
 
-            foreach (char c in txtPassword.Text)
+            foreach (char c in txtPassword.Password)
             {
                 if (Char.IsLower(c)) lower++;
                 else if (Char.IsUpper(c)) upper++;
@@ -70,7 +70,7 @@ namespace Tehtava6
             }
         }
 
-        private void PasswordTextInput(object sender, TextChangedEventArgs e)
+        private void PasswordTextInput(object sender, RoutedEventArgs e)
         {
             CheckPassword();
         }

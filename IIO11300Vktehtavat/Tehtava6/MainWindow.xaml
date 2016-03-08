@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="277.66" Width="350">
     <Grid>
-        <TextBox x:Name="txtPassword" HorizontalAlignment="Left" Height="23" Margin="10,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="312" TextChanged="PasswordTextInput"/>
+        <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Height="23" Margin="10,31,0,0" VerticalAlignment="Top" Width="312" PasswordChanged="PasswordTextInput" />
         <TextBlock x:Name="tbPasswordAnalysis" HorizontalAlignment="Left" Height="95" Margin="10,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="312"/>
         <TextBlock x:Name="tbPasswordRating" HorizontalAlignment="Left" Height="59" Margin="10,163,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="312" FontSize="32" TextAlignment="Center"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="18" Margin="10,10,0,0" TextWrapping="Wrap" Text="Syötä salasana:" VerticalAlignment="Top" Width="326"/>
