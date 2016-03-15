@@ -19,41 +19,23 @@ namespace Tehtava5
 
         public DataTable getDataTable()
         {
-            return getDataTable("");
-        }
+            DataReader reader = new DataReader();
+            List<Customer> customers = reader.ReadToList();
 
-        public DataTable getDataTable(string search)
-        {
-            DataReader attendanceReader = new DataReader();
-            ArrayList attendances = attendanceReader.ReadToArrayList(search);
+            if (customers == null) return null;
 
-            if (attendances == null) return null;
+            DataTable customerTable = new DataTable();
+            customerTable.Columns.Add("Firstname", typeof(string));
+            customerTable.Columns.Add("Lastname", typeof(string));
+            customerTable.Columns.Add("Address", typeof(string));
+            customerTable.Columns.Add("City", typeof(string));
 
-            DataTable attendanceTable = new DataTable();
-            attendanceTable.Columns.Add("asioid", typeof(string));
-            attendanceTable.Columns.Add("lastname", typeof(string));
-            attendanceTable.Columns.Add("firstname", typeof(string));
-            attendanceTable.Columns.Add("date", typeof(string));
-
-            foreach (Attendance attendee in attendances)
+            foreach (Customer customer in customers)
             {
-                attendanceTable.Rows.Add(attendee.ToStringArray());
+                customerTable.Rows.Add(customer.ToArray());
             }
 
-            return attendanceTable;
-        }
-
-        public DataView getDataView()
-        {
-            return getDataView("");
-        }
-
-        public DataView getDataView(string search)
-        {
-            DataTable attendanceTable = getDataTable(search);
-            if (attendanceTable == null) return null;
-            DataView attendanceView = new DataView(attendanceTable);
-            return attendanceView;
+            return customerTable;
         }
     }
 }

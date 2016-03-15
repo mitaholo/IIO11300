@@ -21,32 +21,21 @@ namespace Tehtava5
             connection = new SqlConnection(connectionString);
         }
 
-        public ArrayList ReadToArrayList()
+        public List<Customer> ReadToList()
         {
-            return ReadToArrayList("");
-        }
-
-        public ArrayList ReadToArrayList(string search)
-        {
-            ArrayList attendances = new ArrayList();
+            List<Customer> customers = new List<Customer>();
             try
             {
                 using (connection)
                 {
-                    SqlCommand command;
-                    if (search == "") command = new SqlCommand("SELECT * FROM lasnaolot", connection);
-                    else
-                    {
-                        command = new SqlCommand("SELECT * FROM lasnaolot WHERE asioid = @asioid", connection);
-                        command.Parameters.Add(new SqlParameter("asioid", search));
-                    }
+                    SqlCommand command  = new SqlCommand("SELECT * FROM vCustomers", connection);
                     connection.Open();
                     using (command)
                     {
                         SqlDataReader reader = command.ExecuteReader();
                         while (reader.Read())
                         {
-                            attendances.Add(new Attendance(reader.GetInt16(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetDateTime(4)));
+                            customers.Add(new Customer(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3)));
                         }
                     }
                 }
@@ -56,7 +45,7 @@ namespace Tehtava5
                 return null;
             }
 
-            return attendances;
+            return customers;
         }
     }
 }

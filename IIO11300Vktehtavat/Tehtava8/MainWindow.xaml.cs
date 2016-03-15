@@ -29,55 +29,18 @@ namespace Tehtava5
         {
             InitializeComponent();
             dataHandler = new DataHandler();
-            Status("Ready");
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void GetCustomersClicked(object sender, RoutedEventArgs e)
         {
-            if(sender.Equals(btnLoadToDataTable))
-            {
-                DataTable attendanceTable = dataHandler.getDataTable();
-                if(attendanceTable == null)
-                {
-                    Status("Tietokantavirhe!", 255, 0, 0);
-                }
-                else
-                {
-                    dgAttendances.DataContext = null;
-                    dgAttendances.DataContext = attendanceTable;
-                }
-            }
-            else if (sender.Equals(btnLoadToDataView) && txtSearch.Text != "")
-            {
-                DataView attendanceView = dataHandler.getDataView(txtSearch.Text);
-                if (attendanceView == null)
-                {
-                    Status("Tietokantavirhe!", 255, 0, 0);
-                }
-                else
-                {
-                    dgAttendances.DataContext = null;
-                    dgAttendances.DataContext = attendanceView;
-                }
-                
-            }
+            lbCustomers.DataContext = dataHandler.getDataTable();
+            lbCustomers.DisplayMemberPath = "Lastname";
         }
 
-        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CustomerSelected(object sender, SelectionChangedEventArgs e)
         {
-
-        }
-
-        public void Status(string teksti)
-        {
-            txtStatus.Text = teksti;
-            txtStatus.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-        }
-
-        public void Status(string teksti, byte r, byte g, byte b)
-        {
-            txtStatus.Text = teksti;
-            txtStatus.Foreground = new SolidColorBrush(Color.FromRgb(r, g, b));
+            if (!(lbCustomers.SelectedItem is DataRowView)) return;
+            spCustomerInfo.DataContext = (lbCustomers.SelectedItem as DataRowView);
         }
     }
 }

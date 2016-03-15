@@ -5,18 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tehtava5"
         mc:Ignorable="d"
-        Title="MainWindow" Height="399" Width="543">
-    <Grid>
-        <Button x:Name="btnLoadToDataTable" Content="Hae läsnäolot" HorizontalAlignment="Left" VerticalAlignment="Top" Width="535" Height="30" Click="button_Click"/>
-        <Button x:Name="btnLoadToDataView" Content="Hae läsnäoloni" HorizontalAlignment="Left" VerticalAlignment="Top" Width="535" Height="30" Click="button_Click" Margin="0,60,0,0"/>
-        <TextBox x:Name="txtSearch" HorizontalAlignment="Left" Height="30
-                 " Margin="0,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="535"/>
-        <DataGrid x:Name="dgAttendances" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="0,90,0,0" VerticalAlignment="Top" Height="245" Width="535" SelectionChanged="dataGrid_SelectionChanged"/>
-        <StatusBar x:Name="sbStatus" HorizontalAlignment="Left" Height="34" Margin="0,335,0,0" VerticalAlignment="Top" Width="535">
-            <StatusBarItem>
-                <TextBlock Name="txtStatus" Width="269" VerticalAlignment="Top" />
-            </StatusBarItem>
-        </StatusBar>
-
-    </Grid>
+        Title="Tehtävä 8" Height="399" Width="543">
+    <DockPanel LastChildFill="True">
+        <DockPanel LastChildFill="True">
+            <Button x:Name="btnLoadCustomers" Content="Hae asiakkaat" Width="200px" Height="30px"  DockPanel.Dock="Top" Click="GetCustomersClicked"/>
+            <ListBox x:Name="lbCustomers" ItemsSource="{Binding}" SelectionChanged="CustomerSelected"></ListBox>
+        </DockPanel>
+        <DockPanel LastChildFill="True">
+            <StackPanel x:Name="spCustomerInfo" DataContext="Binding">
+                <StackPanel Orientation="Horizontal" Margin="10,8,8,10">
+                    <TextBlock Text="Etunimi:" Width="60px"></TextBlock>
+                    <TextBox x:Name="txtFirstname" Width="160px" IsReadOnly="True" Text="{Binding Firstname}"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="10,8,8,10">
+                    <TextBlock Text="Sukunimi:" Width="60px"></TextBlock>
+                    <TextBox x:Name="txtLastname" Width="160px" IsReadOnly="True" Text="{Binding Lastname}"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="10,8,8,10">
+                    <TextBlock Text="Osoite:" Width="60px"></TextBlock>
+                    <TextBox x:Name="txtAddress" Width="160px" IsReadOnly="True" Text="{Binding Address}"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="10,8,8,10">
+                    <TextBlock Text="Kaupunki:" Width="60px"></TextBlock>
+                    <TextBox x:Name="txtCity" Width="160px" IsReadOnly="True" Text="{Binding City}"></TextBox>
+                </StackPanel>
+            </StackPanel>
+        </DockPanel>
+    </DockPanel>
 </Window>

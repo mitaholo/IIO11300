@@ -7,7 +7,6 @@
         mc:Ignorable="d"
         Title="Oudot oliot SM-liigassa" Height="283.042" Width="635.958">
     <DockPanel LastChildFill="True">
-
         <Menu x:Name="menu" IsMainMenu="True" HorizontalAlignment="Stretch" DockPanel.Dock="Top">
             <MenuItem Header="Tiedosto">
                 <MenuItem Header="Avaa" Click="btnLataa_Click"/>
