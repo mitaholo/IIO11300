@@ -1,0 +1,58 @@
+﻿<Window x:Name="windowAkkuna" x:Class="Tehtava3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tehtava3"
+        mc:Ignorable="d"
+        Title="Oudot oliot SM-liigassa" Height="283.042" Width="635.958">
+    <DockPanel LastChildFill="True">
+        <Menu x:Name="menu" IsMainMenu="True" HorizontalAlignment="Stretch" DockPanel.Dock="Top">
+            <MenuItem Header="Tiedosto">
+                <MenuItem Header="Tallenna kantaan" Click="btnKirjoita_Click"/>
+                <MenuItem Header="Lopeta" Click="btnLopetus_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <StatusBar x:Name="sbStatus" HorizontalAlignment="Stretch" Height="25" VerticalAlignment="Top" Grid.ColumnSpan="2" DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <TextBlock Name="txtStatus" />
+            </StatusBarItem>
+        </StatusBar>
+
+        <ListBox x:Name="listPelaajat" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="239" SelectionChanged="listPelaajat_SelectionChanged" Grid.ColumnSpan="2" DockPanel.Dock="Right"/>
+
+        <DockPanel DockPanel.Dock="Left">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
+                <Button x:Name="btnUusi" Content="Luo uusi pelaaja" HorizontalAlignment="Left" VerticalAlignment="Top" Width="116" Margin="5,5,5,5" Click="btnUusi_Click"/>
+                <Button x:Name="btnTallenna" Content="Tallenna pelaaja" HorizontalAlignment="Left" VerticalAlignment="Top" Width="116" Margin="5,5,5,5" Click="btnTallenna_Click"/>
+                <Button x:Name="btnPoista" Content="Poista pelaaja" HorizontalAlignment="Left" VerticalAlignment="Top" Width="116" Margin="5,5,5,5" Click="btnPoista_Click"/>
+            </StackPanel>
+            <StackPanel Margin="5,5,0,5" DockPanel.Dock="Left">
+                <StackPanel Orientation="Horizontal" Margin="5,5,0,5">
+                    <Label x:Name="lblEtu" Content="Etunimi:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Padding="0,2,0,0"/>
+                    <TextBox x:Name="txtEtu" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5,5,0,5">
+                    <Label x:Name="lblSuku" Content="Sukunimi:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Padding="0,2,0,0"/>
+                    <TextBox x:Name="txtSuku" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5,5,0,5">
+                    <Label x:Name="lblHinta" Content="Siirtohinta:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Padding="0,2,0,0"/>
+                    <TextBox x:Name="txtHinta" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5,5,0,5">
+                    <Label x:Name="lblSeura" Content="Seura:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Padding="0,2,0,0"/>
+                    <ComboBox x:Name="cbSeura" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5,5,0,5">
+                    <Label x:Name="lblUrl" Content="Kuva URL:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Padding="0,2,0,0"/>
+                    <TextBox x:Name="txtUrl" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Image x:Name="imgPelaaja" Source="{Binding}" Height="160" Width="160" Stretch="Uniform"/>
+            </StackPanel>
+        </DockPanel>
+    </DockPanel>
+</Window>
